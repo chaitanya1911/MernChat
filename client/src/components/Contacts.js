@@ -8,8 +8,8 @@ export default function Contacts({obj}) {
 
     return (
        <ListGroup variant="flush">
-           {obj.contacts.map(contact=>(
-               <ListGroup.Item   key={contact.id}>
+           {obj.contacts.map((contact,index)=>(
+               <ListGroup.Item   key={index}>
                 {contact.username}
                 
                </ListGroup.Item>

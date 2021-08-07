@@ -19,9 +19,10 @@ export default function Mainbar({obj}) {
    function handleSubmit(e){
         e.preventDefault();
          let arr=obj.activeConvo.convoBwtn
-          arr = arr.filter(function(item) {
+         if(arr)
+          {arr = arr.filter(function(item) {
             return item !== obj.myId
-         })
+         })}
          obj.setCurrentMsg(text)
          console.log(obj.currentMsgs)
          

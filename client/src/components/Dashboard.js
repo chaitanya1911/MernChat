@@ -17,6 +17,8 @@ const [allConvo, setAllConvo] = useState([]);
 const [allChats,setAllChats]=useState([]);
 const [currentMsg, setCurrentMsg] = useState('');
 const [currentMsgs, setCurrentMsgs] = useState([]);
+const [newContact, setNewContact] = useState([]);
+
 
 
 
@@ -54,8 +56,9 @@ if (socket) {
     return (
         <>
      <div className ="d-flex" style={{height:'100vh'}}>
-   
-                <Sidebar obj={{id:props.match.params.id,setToUsername:setToUsername,setToId:setToId,contacts:contacts,allConvo:allConvo,setActiveConvo:setActiveConvo}} />
+           
+           
+                <Sidebar obj={{id:props.match.params.id,setToUsername:setToUsername,setToId:setToId,contacts:contacts,allConvo:allConvo,setAllConvo:setAllConvo,setActiveConvo:setActiveConvo,newContact:newContact,setNewContact:setNewContact}} />
                
                 {activeConvo && <Mainbar obj={{toUsername:toUsername,myId:props.match.params.id,toId:toId,contacts:contacts,allConvo:allConvo,activeConvo:activeConvo,sessionId:sessionId,allChats:allChats,currentMsgs:currentMsgs,setCurrentMsg:setCurrentMsg}}  />}
              

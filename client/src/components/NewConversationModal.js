@@ -2,16 +2,19 @@ import React ,{useState} from 'react'
 import {Modal, Form,Button,InputGroup} from 'react-bootstrap'
 import {v4 as uuidv4} from 'uuid'
 import Axios from 'axios';
+import socket from '../SocketIo/socketIo';
 
 export default function NewConversationModal({obj}) {
     const [selectedContactIds,setSelectedContactIds]=useState([])
+    const sessionId=uuidv4()
 
     function handleSubmit(e){
        e.preventDefault();
        console.log(selectedContactIds)
+       socket.emit('addContacts',{sessionId:sessionId,myId:obj.info.id,convoBtwn:selectedContactIds})
        //**  this is to post data to db if he had contacted **//
             Axios.post('http://localhost:3001/dashboard/obj.info.id',{
-                sessionId:uuidv4(),               //sessionId is string
+                sessionId:sessionId,               //sessionId is string
                 convoBwtn:selectedContactIds     //convoBwtn is object
             }).then(res => {
                 console.log(res.data)
@@ -44,8 +47,8 @@ export default function NewConversationModal({obj}) {
         <Modal.Header closeButton>Create Conversations</Modal.Header>
         <Modal.Body>
             <Form onSubmit={handleSubmit}>
-            {obj.info.contacts.map(contact=>(
-               <Form.Group   key={contact.id}>
+            {obj.info.contacts.map((contact,index)=>(
+               <Form.Group   key={index}>
                    <Form.Check
                    type="checkbox"
                    value={selectedContactIds.includes(contact.id)}
