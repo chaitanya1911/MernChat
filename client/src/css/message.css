@@ -1,0 +1,27 @@
+.chat-messages {
+	padding: 10px 10px 0 10px;
+	max-height: 100%;
+
+}
+
+.chat-messages .message {
+	width: fit-content;
+	margin:0px 0px 10px 0px;
+	min-width: 150px;
+	max-width: 550px;
+	padding: 20px;
+	border-radius: 70px;
+	word-wrap:break-word;
+}
+.chat-messages .message .time{
+	width: fit-content;
+	word-wrap:break-word;
+}
+
+.chat-messages .message .meta {
+	font-size: 15px;
+	font-weight: bold;
+	color: var(--dark-color-b);
+	opacity: 0.7;
+}
+
