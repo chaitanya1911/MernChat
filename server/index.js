@@ -23,7 +23,7 @@ const botName="ChatCord Bot";
 let username="ck"
 
 mongoose.connect(
-    'mongodb+srv://admin1:Admin12345@cluster0.vt9st.mongodb.net/ChatApp?retryWrites=true&w=majority',
+    'mongodb+srv://<username>:<password>@cluster0.vt9st.mongodb.net/<databaseName>?retryWrites=true&w=majority',
     {
     useNewUrlParser:true,
     useUnifiedTopology: true,
