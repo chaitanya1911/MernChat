@@ -9,7 +9,8 @@ const app=express();
 
 const UserModel=require('./models/User')
 const ConversationModel=require('./models/Conversation')
-const ChatModel=require('./models/Chat')
+const ChatModel=require('./models/Chat');
+const Chat = require("./models/Chat");
 
 
 app.use(express.json());
@@ -40,11 +41,11 @@ io.on('connection', socket => {
     //Welcome the user
     socket.emit('defaultMessage', formatMessage(botName,`Welcome to Default msg chatCord! ` ));
 
-    socket.on('addContacts',({sessionId,myId,convoBtwn})=>{
-        console.log(convoBtwn)
+    socket.on('addContacts',({sessionId,myId,convoBwtn})=>{
+        console.log(convoBwtn)
         console.log(sessionId)
         console.log(myId)
-        socket.emit('newContact',{sessionId:sessionId,myId:myId,convoBtwn:convoBtwn})
+        io.emit('newContact',{sessionId:sessionId,myId:myId,convoBwtn:convoBwtn})
     })
    
 
@@ -133,6 +134,7 @@ app.get('/getAllChats/:id',async function(req,res){
         { $or:[ {"toUserId": { $regex : `${req.params.id}` }}, {'fromUserId':`${req.params.id}`} ]}
   
     );
+    console.log(chat)
     res.json(chat)
     });
 
